@@ -1,7 +1,21 @@
 var Service = require('node-windows').Service;
-const sendmail = require('sendmail')();
-//var mail = require('nodemailer').mail;
-const nodemailer = require('nodemailer');
+const sendmail = require('sendmail')({
+  logger: {
+    debug: console.log,
+    info: console.info,
+    warn: console.warn,
+    error: console.error
+  },
+  silent: true,
+	/*
+  dkim: { // Default: False
+    privateKey: fs.readFileSync('./dkim-private.pem', 'utf8'),
+    keySelector: 'mydomainkey'
+  },
+	*/
+  devPort: 4767, // Default: False
+  devHost: 'localhost' // Default: localhost
+});
 
 
 
@@ -81,7 +95,7 @@ switch (process.argv[2]) {
 }
 
 function sendMail( message ) {
-  /*
+  
   sendmail({
       from: 'no-reply@xxx.yyy',
       to: 'pie.piemontese@gmail.com',
@@ -92,7 +106,7 @@ function sendMail( message ) {
       console.dir(reply);
       console.log('sendmail error');
   });  
-  */
+  
 
   /*
   mail({
