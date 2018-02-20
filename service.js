@@ -12,9 +12,9 @@ const sendmail = require('sendmail')({
     privateKey: fs.readFileSync('./dkim-private.pem', 'utf8'),
     keySelector: 'mydomainkey'
   },
-	*/
-  devPort: 4767, // Default: False
-  devHost: 'localhost' // Default: localhost
+  */
+  devPort: 587, // Default: False
+//  devHost: 'localhost' // Default: localhost
 });
 
 
@@ -97,7 +97,7 @@ switch (process.argv[2]) {
 function sendMail( message ) {
   
   sendmail({
-      from: 'no-reply@xxx.yyy',
+      from: 'no-reply@xxx.com',
       to: 'pie.piemontese@gmail.com',
       subject: 'Sample service',
       html: message,
