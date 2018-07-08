@@ -1,5 +1,6 @@
 var Service = require('node-windows').Service;
-const sendmail = require('sendmail')({
+const sendmail = require('sendmail')();/*
+{
   logger: {
     debug: console.log,
     info: console.info,
@@ -7,16 +8,14 @@ const sendmail = require('sendmail')({
     error: console.error
   },
   silent: true,
-	/*
   dkim: { // Default: False
     privateKey: fs.readFileSync('./dkim-private.pem', 'utf8'),
     keySelector: 'mydomainkey'
   },
-  */
   devPort: 587, // Default: False
-//  devHost: 'localhost' // Default: localhost
+  devHost: 'localhost' // Default: localhost
 });
-
+*/
 
 
 
@@ -100,7 +99,7 @@ function sendMail( message ) {
       from: 'no-reply@xxx.com',
       to: 'pie.piemontese@gmail.com',
       subject: 'Sample service',
-      html: message,
+      html: '<h2>' + message + '</h2>',
     }, function(err, reply) {
       console.log(err && err.stack);
       console.dir(reply);
